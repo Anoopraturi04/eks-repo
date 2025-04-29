@@ -13,7 +13,13 @@ aws iam create-policy \
     --policy-name AWSLoadBalancerControllerIAMPolicy \
     --policy-document file://iam_policy.json
 ```
+In-case face any error 
 
+```
+export AWS_PROFILE=default
+export AWS_REGION=ap-northeast-3
+
+```
 Create IAM Role
 
 ```
@@ -43,8 +49,7 @@ helm repo update eks
 Install
 
 ```
-helm install aws-load-balancer-controller eks/aws-load-balancer-controller \            
-  -n kube-system \
+helm install aws-load-balancer-controller eks/aws-load-balancer-controller -n kube-system \
   --set clusterName=<your-cluster-name> \
   --set serviceAccount.create=false \
   --set serviceAccount.name=aws-load-balancer-controller \
